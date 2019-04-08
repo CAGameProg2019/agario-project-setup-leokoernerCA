@@ -4,30 +4,37 @@ let c = canvas.getContext('2d');
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
-// let pos = new Vector(60,60);
-// let vel = new Vector(.5,.2);
+let foods = [];
 
-let pos = new Vector(5, 7);
-let vel = new Vector(1, 1);
+let colors = [
+    '#FFDC00',
+    '#FCB102',
+    '#00FF55',
+    '#E8FF54',
+    '#00FFA9'
+];
 
+function randomColor() {
+    let index = Math.floor(Math.random() * colors.length);
+    return colors[index];
+}
 
 function init() {
-    vel.scale(2);
-    vel.print(); // <2, 2>
-    pos.subVector(vel);
-    pos.print();  // <3, 5>
+    for(i = 0; i < 100; i++) {
+        let x = Math.random() * canvas.width;
+        let y = Math.random() * canvas.height
+        let color = randomColor();
+        let food = new Food(x, y, 20, randomColor());
+        foods.push(food);
+    }
     update();
 }
 
 function update() {
     c.clearRect(0, 0, canvas.width, canvas.height)
-    pos.addVector(vel);
-
-    c.beginPath();
-    c.arc(pos.x, pos.y, 50, 0, Math.PI*2, false)
-    c.closePath();
-    c.stroke();
-
+    for(i = 0; i < 100; i++) {
+        foods[i].draw(c);
+    }
 
     requestAnimationFrame(update);
 }

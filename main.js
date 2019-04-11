@@ -8,6 +8,8 @@ let mpos;
 
 let player;
 let foods = [];
+let x;
+let y;
 
 let colors = [
     '#FFDC00',
@@ -44,6 +46,8 @@ function update() {
         foods[i].draw(c);
     }
 
+    player.x = mpos.x
+    player.y = mpos.y
     player.draw(c);
 
     requestAnimationFrame(update);

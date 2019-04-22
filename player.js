@@ -1,9 +1,28 @@
 class Player extends Food{
 
-    constructor(x, y, radius, color, name, stroke) {
+    constructor(x, y, radius, color, name, stroke, maxSpeed) {
         super(x, y, radius, color);
         this.name = name;
         this.stroke = stroke;
+        this.maxSpeed = maxSpeed;
+    }
+
+    update(mouse) {
+        let vel = new Vector(mouse.x, mouse.y);
+        vel.subVector(this);
+
+        let dist = vel.magnitude();
+        if(dist > 0) {
+            vel.toDirVec();
+
+            vel.scale(this.maxSpeed);
+            if(dist < this.radius) {
+                vel.scale(dist/this.radius);
+            }
+
+            this.addVector(vel);
+        }
+
     }
 
     draw(c) {

@@ -45,6 +45,15 @@ function generateFood() {
     let food = new Food(x, y, 10, randomColor());
     foods.push(food);
 }
+
+function spitFood() {
+    let x = Math.random() * canvas.width;
+    let y = Math.random() * canvas.height
+    let color = randomColor();
+    let food = new Food(x, y, 10, randomColor());
+    foods.push(food);
+}
+
 function init() {
 
     mpos =  new Vector(canvas.width/2, canvas.height/2);
@@ -93,4 +102,10 @@ window.addEventListener('load', function() {
         mpos.x = event.clientX - canvas.offsetLeft;
         mpos.y = event.clientY - canvas.offsetTop;
     });
+
+	window.addEventListener("keydown", function(event) {
+	  if (event.key === "w") {
+	    spitFood();
+	  }
+	});
 });

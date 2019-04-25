@@ -4,7 +4,7 @@ let c = canvas.getContext('2d');
 canvas.width = innerWidth;
 canvas.height = innerHeight-10;
 
-const FOOD_COUNT = 100;
+let FOOD_COUNT = 100;
 let mpos;
 let player;
 let foods = [];
@@ -46,13 +46,6 @@ function generateFood() {
     foods.push(food);
 }
 
-function spitFood() {
-    let x = Math.random() * canvas.width;
-    let y = Math.random() * canvas.height
-    let color = randomColor();
-    let food = new Food(x, y, 10, randomColor());
-    foods.push(food);
-}
 
 function init() {
 
@@ -105,7 +98,9 @@ window.addEventListener('load', function() {
 
 	window.addEventListener("keydown", function(event) {
 	  if (event.key === "w") {
-	    spitFood();
+	    player.spitFood()
+		FOOD_COUNT++
+		player.radius /= 1.05;
 	  }
 	});
 });

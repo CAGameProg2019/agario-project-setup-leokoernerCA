@@ -41,6 +41,14 @@ class Player extends Food{
         c.fillText(this.name, this.x, this.y);
     }
 
+    spitFood() {
+        let x = (this.x + this.radius + 5);
+        let y = (this.y + this.radius + 5);
+        let color = randomColor();
+        let food = new Food(x, y, 10, randomColor());
+        foods.push(food);
+    }
+
 }
 
 Object.assign(Player, Food);
